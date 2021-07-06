@@ -63,15 +63,15 @@ ORDER BY 1,2
 
 
 -- Looking at Countries with Highest Infection Rate compared to Population
-SELECT location, population, max(total_cases) AS HighestInfectionCount, max(round((total_cases/population)*100.0,2)) AS PercentPopAffected
+SELECT date, location, population, max(total_cases) AS HighestInfectionCount, max(round((total_cases/population)*100.0,2)) AS PercentPopAffected
 FROM portfolioproject.dbo.CovidDeaths
-WHERE population<>0
-GROUP BY location, population
+-- WHERE population<>0
+GROUP BY location, population, date
 ORDER BY PercentPopAffected desc
 
 -- Looking at Countries with Highest Death Count
 
-SELECT continent, location, max(total_deaths) AS TotalDeathCount
+SELECT location, max(total_deaths) AS TotalDeathCount
 FROM portfolioproject.dbo.CovidDeaths
 WHERE continent <> ''
 GROUP BY location
